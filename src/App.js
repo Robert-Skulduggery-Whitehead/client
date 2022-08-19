@@ -17,6 +17,7 @@ export default class App extends React.Component {
     });
     this.state.socket.on("disconnect", () => {
       this.forceUpdate();
+      this.state.socket.disconnect();
     });
   }
 
@@ -27,6 +28,7 @@ export default class App extends React.Component {
   }
 
   connectSocket = (ip) => {
+    this.state.socket.disconnect();
     if (this.state.socket.disconnected) {
       let address = "http://" + ip + ":3005";
       this.setState({
@@ -34,6 +36,7 @@ export default class App extends React.Component {
       });
     }
     this.forceUpdate();
+    console.log(this.state);
   };
 
   render() {

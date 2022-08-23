@@ -23,7 +23,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="loginForm" onSubmit={this.handleSubmit}>
         <label for="ip">IP address</label>
         <input
           id="id"

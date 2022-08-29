@@ -3,7 +3,37 @@
 }
 
 .controlsLeft {
+    padding-left: 1em;
     width: 30vw;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    align-items: center;
+    justify-items: left;
+    row-gap: 50px;
+}
+
+.controlsPlayerLeft {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    justify-items: start;
+    align-items: center;
+}
+
+.controlsRight {
+    padding-right: 1em;
+    width: 30vw;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    align-items: center;
+    justify-items: end;
+    row-gap: 50px;
+}
+
+.controlsPlayerRight {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    justify-items: end;
+    align-items: center;
 }
 
 .controlsCenter {
@@ -57,9 +87,7 @@
     grid-column: 2/3;
   }
 
-.controlsRight {
-    width: 30vw;
-}
+
 
 input[type="text"] {
     width: 50%;

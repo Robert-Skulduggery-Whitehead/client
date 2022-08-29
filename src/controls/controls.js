@@ -74,12 +74,10 @@ export default class Controls extends React.Component {
       hudToggle: "hidden",
       playersToggle: "hidden",
     };
-    console.log(props.data.series.bestOf);
     this.state.bestOfArray = Array.apply(
       null,
       Array(props.data.series.bestOf || 0)
     );
-    console.log(this.state.bestOfArray);
   }
 
   handleSubmit = (event) => {};
@@ -116,7 +114,44 @@ export default class Controls extends React.Component {
   render() {
     return (
       <div class="controls">
-        <div class="controlsLeft"></div>
+        <div class="controlsLeft">
+          {Object.keys(this.props.data.allplayers).map((id) => {
+            if (
+              this.props.data.allplayers[id].observer_slot > 0 &&
+              this.props.data.allplayers[id].observer_slot < 6
+            ) {
+              return (
+                <div class="controlsPlayerLeft">
+                  <span>{this.props.data.allplayers[id].name}</span>
+                  <input
+                    type="text"
+                    id="leftPlayer"
+                    name="leftPlayer"
+                    value={this.props.data.allplayers[id].name}
+                    onChange={(event) => {
+                      this.props.data.allplayers[id].name = event.target.value;
+                      this.forceUpdate();
+                    }}
+                  ></input>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      let data = {
+                        id: id,
+                        name: this.props.data.allplayers[id].name,
+                      };
+                      this.props.sendPlayer(data);
+                      event.preventDefault();
+                    }}
+                  >
+                    Submit
+                  </button>
+                </div>
+              );
+            }
+          })}
+        </div>
         <div class="controlsCenter">
           <form id="teamLeft" onSubmit={this.handleSubmit}>
             <label for="teamLeftName">LEFT</label>
@@ -266,7 +301,44 @@ export default class Controls extends React.Component {
             Submit Games
           </button>
         </div>
-        <div class="controlsRight"></div>
+        <div class="controlsRight">
+          {Object.keys(this.props.data.allplayers).map((id) => {
+            if (
+              this.props.data.allplayers[id].observer_slot == 0 ||
+              this.props.data.allplayers[id].observer_slot > 5
+            ) {
+              return (
+                <div class="controlsPlayerRight">
+                  <span>{this.props.data.allplayers[id].name}</span>
+                  <input
+                    type="text"
+                    id="rightPlayer"
+                    name="rightPlayer"
+                    value={this.props.data.allplayers[id].name}
+                    onChange={(event) => {
+                      this.props.data.allplayers[id].name = event.target.value;
+                      this.forceUpdate();
+                    }}
+                  ></input>
+                  <button
+                    id="rightPlayerButton"
+                    type="button"
+                    onClick={(event) => {
+                      let data = {
+                        id: id,
+                        name: this.props.data.allplayers[id].name,
+                      };
+                      this.props.sendPlayer(data);
+                      event.preventDefault();
+                    }}
+                  >
+                    Submit
+                  </button>
+                </div>
+              );
+            }
+          })}
+        </div>
       </div>
     );
   }

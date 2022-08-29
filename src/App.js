@@ -35,6 +35,7 @@ export default class App extends React.Component {
   }
 
   connectSocket = (ip) => {
+    console.log(ip);
     this.state.socket.disconnect();
     if (this.state.socket.disconnected) {
       let address = "http://" + ip + ":3005";
@@ -57,6 +58,10 @@ export default class App extends React.Component {
     this.state.socket.emit("getTeams", teams);
   };
 
+  sendPlayer = (player) => {
+    this.state.socket.emit("getPlayer", player);
+  };
+
   render() {
     if (this.state.socket.disconnected) {
       return <Login connectSocket={this.connectSocket} />;
@@ -67,6 +72,7 @@ export default class App extends React.Component {
           swapTeams={this.swapTeams}
           sendGames={this.sendGames}
           sendTeams={this.sendTeams}
+          sendPlayer={this.sendPlayer}
         />
       );
     }

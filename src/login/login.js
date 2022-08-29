@@ -17,7 +17,7 @@ export default class Login extends React.Component {
 
   handleChange = (event) => {
     this.setState({
-      ip: event.target.ip,
+      ip: event.target.value,
     });
   };
 

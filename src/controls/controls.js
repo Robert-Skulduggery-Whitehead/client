@@ -300,6 +300,36 @@ export default class Controls extends React.Component {
           >
             Submit Games
           </button>
+          <button
+            id="btnShowOverlay"
+            type="button"
+            onClick={(event) => {
+              this.props.showOverlay();
+              event.preventDefault();
+            }}
+          >
+            Show overlay
+          </button>
+          <button
+            id="btnShowOverlay"
+            type="button"
+            onClick={(event) => {
+              this.props.hideOverlay();
+              event.preventDefault();
+            }}
+          >
+            Hide overlay
+          </button>
+          <button
+            id="btnCloseOverlay"
+            type="button"
+            onClick={(event) => {
+              this.props.closeOverlay();
+              event.preventDefault();
+            }}
+          >
+            Close overlay
+          </button>
         </div>
         <div class="controlsRight">
           {Object.keys(this.props.data.allplayers).map((id) => {

@@ -62,6 +62,18 @@ export default class App extends React.Component {
     this.state.socket.emit("getPlayer", player);
   };
 
+  showOverlay = () => {
+    this.state.socket.emit("showOverlay");
+  };
+
+  hideOverlay = () => {
+    this.state.socket.emit("hideOverlay");
+  };
+
+  closeOverlay = () => {
+    this.state.socket.emit("closeOverlay");
+  };
+
   render() {
     if (this.state.socket.disconnected) {
       return <Login connectSocket={this.connectSocket} />;
@@ -73,6 +85,9 @@ export default class App extends React.Component {
           sendGames={this.sendGames}
           sendTeams={this.sendTeams}
           sendPlayer={this.sendPlayer}
+          showOverlay={this.showOverlay}
+          hideOverlay={this.hideOverlay}
+          closeOverlay={this.closeOverlay}
         />
       );
     }
